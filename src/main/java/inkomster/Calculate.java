@@ -2,6 +2,9 @@ package inkomster;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -122,9 +125,19 @@ public class Calculate {
 		report += String.format("===============================================\n");
 		
 		System.out.println(report);
+		printToFile(report);
 
 	}
 	
+	private void printToFile(String content) throws IOException {
+		
+		String path = System.getProperty("user.home") + "/Documents/rapport.txt";
+		// TODO Auto-generated method stub
+		Files.write(Paths.get(path), content.getBytes(), 
+						StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+		
+	}
+
 	Double calcBrutto(Double peng) {
 		peng = peng * 100d;
 		peng = peng / 70d;

@@ -9,6 +9,8 @@ public class Main {
 	public static void main(String[] args) {
 		Calculate calc = new Calculate();
 		try {
+			calc.go("C:/Users/tomas/Documents/transaktions_8.csv",Cst.JUNI);
+			calc.go("C:/Users/tomas/Documents/transaktions_8.csv",Cst.JULI);
 			calc.go("C:/Users/tomas/Documents/transaktions_8.csv",Cst.AUGUSTI);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
