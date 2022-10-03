@@ -104,25 +104,32 @@ public class Calculate {
 		Double pensionPerManad = pension / TILL_OCH_MED_MÅNAD;
 		Double tjanstepensionPerManad = tjanstePension / TILL_OCH_MED_MÅNAD;
 		Double tjanstepensionBrutto = calcBrutto(tjanstePension);
+		Double tjanstepensionBruttoPerManad = tjanstepensionBrutto / TILL_OCH_MED_MÅNAD;
+		Double dragenSkattTjansteHittills = tjanstepensionBrutto - tjanstePension;
+		Double dragenSkattTjansteHittillsPerManad = (tjanstepensionBrutto - tjanstePension) / TILL_OCH_MED_MÅNAD;
 
 		String report ; 
 		report = String.format("=============================================== Till och med månad %s\n",TILL_OCH_MED_MÅNAD);
 		report += String.format("Summa per bolag: %s\n", summaPerBolag);
 		report += String.format("===============================================\n");
-		report += String.format("Statlig pension hittills (netto)  :%10.2f\n", pension);
-		report += String.format("Tjänstepension hittills  (netto)  :%10.2f\n", tjanstePension);
-		report += String.format("Tjänstepension hittills  (brutto) :%10.2f\n", tjanstepensionBrutto);
-		report += String.format("Dragen skatt tjänste hittills     :%10.2f\n", tjanstepensionBrutto - tjanstePension);
+		report += String.format("Statlig pension hittills (netto)    :%10.2f\n", pension);
+		report += String.format("Tjänstepension hittills  (netto)    :%10.2f\n", tjanstePension);
+		report += String.format("Tjänstepension hittills  (brutto)   :%10.2f\n", tjanstepensionBrutto);
+		report += String.format("                        per månad   :%10.2f\n",tjanstepensionBruttoPerManad );
+		report += String.format("Dragen skatt tjänste hittills       :%10.2f\n", dragenSkattTjansteHittills);
+		report += String.format("                        per månad   :%10.2f\n",dragenSkattTjansteHittillsPerManad );
 		report += String.format("===============================================\n");
-		report += String.format("Pension per månad                 :%10.2f\n", pensionPerManad);
-		report += String.format("Tjänstepension per månad          :%10.2f\n", tjanstepensionPerManad);
-		report += String.format("Summa                             :%10.2f\n", tjanstepensionPerManad + pensionPerManad);
+		report += String.format("Pension per månad                   :%10.2f\n", pensionPerManad);
+		report += String.format("Tjänstepension per månad            :%10.2f\n", tjanstepensionPerManad);
+		report += String.format("Summa                               :%10.2f\n", tjanstepensionPerManad + pensionPerManad);
 		report += String.format("===============================================\n");
 
-		report += String.format("Pension kvar att få i år          :%10.2f\n",  (pensionPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET));
-		report += String.format("Tjänstepension kvar att få i år   :%10.2f\n" , (tjanstepensionPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET));
-		report += String.format("Summa                             :%10.2f\n", (pensionPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET) + (tjanstepensionPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET));
+		report += String.format("Pension kvar att få i år            :%10.2f\n",  (pensionPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET));
+		report += String.format("Tjänstepension kvar att få i år     :%10.2f\n" , (tjanstepensionPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET));
+		report += String.format("Summa                               :%10.2f\n", (pensionPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET) + (tjanstepensionPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET));
 		report += String.format("===============================================\n");
+		report += String.format("Tjänstepension kvar att få (brutto) :%10.2f\n" , (tjanstepensionBruttoPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET));
+		report += String.format("Tjänstepension skatt resten av året :%10.2f\n" , ( dragenSkattTjansteHittillsPerManad * ANTAL_MÅNADER_RESTEN_AV_ÅRET));
 		
 		System.out.println(report);
 		printToFile(report);
