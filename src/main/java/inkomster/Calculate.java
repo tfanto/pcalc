@@ -137,8 +137,8 @@ public class Calculate {
 	}
 	
 	private void printToFile(String content) throws IOException {
-		
-		String path = System.getProperty("user.home") + "/Documents/rapport.txt";
+		long timeMillis = System.currentTimeMillis();
+		String path = System.getProperty("user.home") + "/Documents/___rapport_"+timeMillis+".txt";
 		// TODO Auto-generated method stub
 		Files.write(Paths.get(path), content.getBytes(), 
 						StandardOpenOption.CREATE, StandardOpenOption.APPEND);
